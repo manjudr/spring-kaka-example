@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: kafka-schema-pipeline
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: schema-pipeline-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: false
+      properties:
+        max.poll.interval.ms: 300000
+        session.timeout.ms: 45000
+        heartbeat.interval.ms: 10000
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      retries: 3
+      properties:
+        retry.backoff.ms: 1000
+        delivery.timeout.ms: 120000
+    listener:
+      ack-mode: MANUAL_IMMEDIATE
+      concurrency: 1
+      type: SINGLE
+      missing-topics-fatal: false
+
+topics:
+  input: events.input
+  output: events.output
+  dlt: events.dlt
+
+kafka:
+  topics:
+    partitions: 3
+    replication-factor: 1
+  producer:
+    sync-timeout-ms: 15000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,info
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+  health:
+    livenessState:
+      enabled: true
+    readinessState:
+      enabled: true
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  level:
+    com.example.kafka: INFO
+    org.springframework.kafka: INFO

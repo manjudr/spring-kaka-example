@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the event"
+    },
+    "ts": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Event timestamp in ISO-8601 format"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["CREATE", "UPDATE", "DELETE"],
+      "description": "Event type"
+    },
+    "payload": {
+      "type": "object",
+      "description": "Free-form event payload"
+    }
+  },
+  "required": ["id", "ts", "type", "payload"],
+  "additionalProperties": false
+}
