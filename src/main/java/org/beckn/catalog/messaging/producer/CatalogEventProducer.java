@@ -50,13 +50,6 @@ public class CatalogEventProducer {
     }
     
     /**
-     * Publish event for single item storage
-     */
-    public void publishItemStoredEvent(String providerId, CatalogItem item) {
-        publishItemsStoredEvent(providerId, List.of(item));
-    }
-    
-    /**
      * Publish a single item event - original Beckn format with metadata
      */
     private void publishSingleItemEvent(CatalogItem item) {

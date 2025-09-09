@@ -75,7 +75,7 @@ kafka:
 # Logging Configuration
 logging:
   level:
-    com.example.kafka: INFO
+    org.beckn.catalog: INFO
     org.springframework.kafka: INFO
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: DEBUG

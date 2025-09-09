@@ -22,19 +22,8 @@ public class EventProducer {
     @Value("${kafka.producer.sync-timeout-ms}")
     private long syncTimeoutMs;
 
-    @Value("${topics.output}")
-    private String outputTopic;
-
     @Value("${topics.dlt}")
     private String dltTopic;
-
-    public void sendToOutput(String key, String value) {
-        if (key == null) {
-            // If no key is provided, generate one to distribute across partitions
-            key = String.valueOf(System.nanoTime() % 3); // This will generate keys 0, 1, or 2
-        }
-        send(key, value, outputTopic);
-    }
 
     public void sendToDlt(String key, String value, String originalTopic, 
                          int originalPartition, long originalOffset, 
