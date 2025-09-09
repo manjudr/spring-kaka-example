@@ -1,4 +1,4 @@
-package com.example.kafka.messaging.producer;
+package org.beckn.catalog.messaging.producer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

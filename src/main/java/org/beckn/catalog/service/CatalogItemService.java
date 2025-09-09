@@ -1,7 +1,7 @@
-package com.example.kafka.service;
+package org.beckn.catalog.service;
 
-import com.example.kafka.entity.CatalogItem;
-import com.example.kafka.repository.CatalogItemRepository;
+import org.beckn.catalog.entity.CatalogItem;
+import org.beckn.catalog.repository.CatalogItemRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;

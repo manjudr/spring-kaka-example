@@ -1,6 +1,6 @@
-package com.example.kafka.messaging.producer;
+package org.beckn.catalog.messaging.producer;
 
-import com.example.kafka.entity.CatalogItem;
+import org.beckn.catalog.entity.CatalogItem;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -89,7 +89,7 @@ public class CatalogEventProducer {
         event.put("event_type", "catalog_item_stored");
         event.put("event_id", java.util.UUID.randomUUID().toString());
         event.put("timestamp", OffsetDateTime.now().toString());
-        event.put("source", "kafka-schema-pipeline");
+        event.put("source", "catalog-publish");
         event.put("version", "2.0");
         
         // Item metadata
@@ -139,7 +139,7 @@ public class CatalogEventProducer {
         event.put("provider_id", providerId);
         event.put("error_message", errorMessage);
         event.put("original_event", originalEvent);
-        event.put("source", "kafka-schema-pipeline");
+        event.put("source", "catalog-publish");
         event.put("version", "2.0");
         
         return event;

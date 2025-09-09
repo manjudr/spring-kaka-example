@@ -1,8 +1,8 @@
-package com.example.kafka.messaging.consumer;
+package org.beckn.catalog.messaging.consumer;
 
-import com.example.kafka.entity.CatalogItem;
-import com.example.kafka.messaging.producer.CatalogEventProducer;
-import com.example.kafka.service.CatalogItemService;
+import org.beckn.catalog.entity.CatalogItem;
+import org.beckn.catalog.messaging.producer.CatalogEventProducer;
+import org.beckn.catalog.service.CatalogItemService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
-import com.example.kafka.messaging.producer.EventProducer;
+import org.beckn.catalog.messaging.producer.EventProducer;
 
 import java.util.List;
 

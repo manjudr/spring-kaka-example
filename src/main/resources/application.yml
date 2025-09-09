@@ -1,6 +1,6 @@
 spring:
   application:
-    name: kafka-schema-pipeline
+    name: catalog-publish
 
   # PostgreSQL Database Configuration
   datasource:

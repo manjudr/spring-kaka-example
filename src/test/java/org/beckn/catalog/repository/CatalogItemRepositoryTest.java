@@ -1,6 +1,6 @@
-package com.example.kafka.repository;
+package org.beckn.catalog.repository;
 
-import com.example.kafka.entity.CatalogItem;
+import org.beckn.catalog.entity.CatalogItem;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;

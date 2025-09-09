@@ -1,4 +1,4 @@
-package com.example.kafka.config;
+package org.beckn.catalog.config;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;

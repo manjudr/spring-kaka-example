@@ -1,4 +1,4 @@
-package com.example.kafka.model;
+package org.beckn.catalog.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

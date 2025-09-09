@@ -1,4 +1,4 @@
-package com.example.kafka.config;
+package org.beckn.catalog.config;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Value;

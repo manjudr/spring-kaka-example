@@ -1,4 +1,4 @@
-package com.example.kafka.entity;
+package org.beckn.catalog.entity;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.persistence.*;
