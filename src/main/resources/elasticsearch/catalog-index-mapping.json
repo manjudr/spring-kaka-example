@@ -1,0 +1,270 @@
+{
+  "mappings": {
+    "properties": {
+      "item_id": {
+        "type": "keyword"
+      },
+      "provider_id": {
+        "type": "keyword"
+      },
+      "provider_descriptor_name": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "provider_descriptor_code": {
+        "type": "keyword"
+      },
+      "provider_locations": {
+        "type": "nested",
+        "properties": {
+          "id": {"type": "keyword"},
+          "gps": {"type": "geo_point"},
+          "address": {"type": "text"},
+          "city_name": {"type": "keyword"},
+          "state_name": {"type": "keyword"},
+          "country_name": {"type": "keyword"},
+          "area_code": {"type": "keyword"}
+        }
+      },
+      "provider_fulfillments": {
+        "type": "nested",
+        "properties": {
+          "id": {"type": "keyword"},
+          "type": {"type": "keyword"},
+          "rateable": {"type": "boolean"},
+          "tracking": {"type": "boolean"},
+          "state_descriptor_code": {"type": "keyword"},
+          "state_descriptor_name": {"type": "keyword"},
+          "contact_phone": {"type": "keyword"},
+          "contact_email": {"type": "keyword"}
+        }
+      },
+      "provider_categories": {
+        "type": "nested",
+        "properties": {
+          "id": {"type": "keyword"},
+          "descriptor_code": {"type": "keyword"},
+          "descriptor_name": {"type": "text"}
+        }
+      },
+      "applicable_offers": {
+        "type": "keyword"
+      },
+      "offer_details": {
+        "type": "nested",
+        "properties": {
+          "id": {"type": "keyword"},
+          "descriptor_name": {"type": "text"},
+          "descriptor_short_desc": {"type": "text"},
+          "descriptor_long_desc": {"type": "text"},
+          "item_ids": {"type": "keyword"},
+          "time_range_start": {"type": "date"},
+          "time_range_end": {"type": "date"},
+          "tags": {
+            "type": "nested",
+            "properties": {
+              "descriptor_name": {"type": "keyword"},
+              "descriptor_code": {"type": "keyword"},
+              "list": {
+                "type": "nested",
+                "properties": {
+                  "descriptor_name": {"type": "keyword"},
+                  "descriptor_code": {"type": "keyword"},
+                  "value": {"type": "keyword"}
+                }
+              }
+            }
+          }
+        }
+      },
+      "item_category_ids": {
+        "type": "keyword"
+      },
+      "item_fulfillment_id": {
+        "type": "keyword"
+      },
+      "item_location_id": {
+        "type": "keyword"
+      },
+      "item_descriptor_name": {
+        "type": "text",
+        "fields": {
+          "keyword": {"type": "keyword"},
+          "suggest": {
+            "type": "completion"
+          }
+        }
+      },
+      "item_descriptor_short_desc": {
+        "type": "text"
+      },
+      "item_descriptor_long_desc": {
+        "type": "text"
+      },
+      "item_descriptor_images": {
+        "type": "nested",
+        "properties": {
+          "url": {"type": "keyword"},
+          "size_type": {"type": "keyword"},
+          "width": {"type": "integer"},
+          "height": {"type": "integer"}
+        }
+      },
+      "price_currency": {
+        "type": "keyword"
+      },
+      "price_value": {
+        "type": "float"
+      },
+      "price_listed_value": {
+        "type": "float"
+      },
+      "matched": {
+        "type": "boolean"
+      },
+      "rating": {
+        "type": "float"
+      },
+      "tags": {
+        "type": "nested",
+        "properties": {
+          "descriptor_name": {"type": "keyword"},
+          "descriptor_code": {"type": "keyword"},
+          "list": {
+            "type": "nested",
+            "properties": {
+              "descriptor_name": {"type": "keyword"},
+              "descriptor_code": {"type": "keyword"},
+              "value": {"type": "keyword"}
+            }
+          }
+        }
+      },
+      "return_terms": {
+        "type": "nested",
+        "properties": {
+          "fulfillment_state_descriptor_code": {"type": "keyword"},
+          "fulfillment_state_descriptor_name": {"type": "keyword"},
+          "return_eligible": {"type": "boolean"},
+          "return_time_range_start": {"type": "date"},
+          "return_time_range_end": {"type": "date"},
+          "return_location_id": {"type": "keyword"},
+          "return_location_gps": {"type": "geo_point"},
+          "return_location_address": {"type": "text"},
+          "return_location_city_name": {"type": "keyword"},
+          "return_location_state_name": {"type": "keyword"},
+          "return_location_country_name": {"type": "keyword"},
+          "return_location_area_code": {"type": "keyword"},
+          "fulfillment_managed_by": {"type": "keyword"}
+        }
+      },
+      "refund_terms": {
+        "type": "nested",
+        "properties": {
+          "fulfillment_state_descriptor_code": {"type": "keyword"},
+          "fulfillment_state_descriptor_name": {"type": "keyword"},
+          "refund_eligible": {"type": "boolean"},
+          "refund_within_range_start": {"type": "date"},
+          "refund_within_range_end": {"type": "date"},
+          "refund_amount_currency": {"type": "keyword"},
+          "refund_amount_value": {"type": "float"}
+        }
+      },
+      "replacement_terms": {
+        "type": "nested",
+        "properties": {
+          "fulfillment_state_descriptor_code": {"type": "keyword"},
+          "fulfillment_state_descriptor_name": {"type": "keyword"},
+          "replacement_within_range_start": {"type": "date"},
+          "replacement_within_range_end": {"type": "date"},
+          "external_ref_urls": {"type": "keyword"}
+        }
+      },
+      "cancellation_terms": {
+        "type": "nested",
+        "properties": {
+          "fulfillment_state_descriptor_code": {"type": "keyword"},
+          "fulfillment_state_descriptor_name": {"type": "keyword"},
+          "cancellation_fee_type": {"type": "keyword"},
+          "cancellation_fee_amount_currency": {"type": "keyword"},
+          "cancellation_fee_amount_value": {"type": "float"},
+          "cancellation_fee_percentage": {"type": "float"}
+        }
+      },
+      "raw_item_json": {
+        "type": "object",
+        "enabled": false
+      },
+      "raw_provider_json": {
+        "type": "object", 
+        "enabled": false
+      },
+      "context_domain": {
+        "type": "keyword"
+      },
+      "context_country": {
+        "type": "keyword"
+      },
+      "context_city": {
+        "type": "keyword"
+      },
+      "context_bpp_id": {
+        "type": "keyword"
+      },
+      "context_bpp_uri": {
+        "type": "keyword"
+      },
+      "created_at": {
+        "type": "date"
+      },
+      "updated_at": {
+        "type": "date"
+      },
+      "indexed_at": {
+        "type": "date"
+      }
+    }
+  },
+  "settings": {
+    "number_of_shards": 3,
+    "number_of_replicas": 1,
+    "refresh_interval": "30s",
+    "max_result_window": 50000,
+    "analysis": {
+      "analyzer": {
+        "catalog_text_analyzer": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": ["lowercase", "stop", "snowball", "word_delimiter"]
+        },
+        "catalog_search_analyzer": {
+          "type": "custom",
+          "tokenizer": "keyword",
+          "filter": ["lowercase", "trim"]
+        }
+      },
+      "normalizer": {
+        "lowercase_normalizer": {
+          "type": "custom",
+          "filter": ["lowercase", "trim"]
+        }
+      },
+      "filter": {
+        "word_delimiter": {
+          "type": "word_delimiter",
+          "generate_word_parts": true,
+          "generate_number_parts": true,
+          "catenate_words": true,
+          "catenate_numbers": true,
+          "catenate_all": false,
+          "split_on_case_change": true,
+          "preserve_original": false
+        }
+      }
+    }
+  }
+}

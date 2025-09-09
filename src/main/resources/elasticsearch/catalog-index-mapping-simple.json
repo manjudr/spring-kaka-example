@@ -1,0 +1,91 @@
+{
+  "mappings": {
+    "properties": {
+      "item_id": {
+        "type": "keyword"
+      },
+      "provider_id": {
+        "type": "keyword"
+      },
+      "provider_name": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "item_name": {
+        "type": "text",
+        "fields": {
+          "keyword": {"type": "keyword"},
+          "suggest": {
+            "type": "completion"
+          }
+        }
+      },
+      "item_description": {
+        "type": "text"
+      },
+      "price_currency": {
+        "type": "keyword"
+      },
+      "price_value": {
+        "type": "float"
+      },
+      "category_ids": {
+        "type": "keyword"
+      },
+      "location_gps": {
+        "type": "geo_point"
+      },
+      "location_city": {
+        "type": "keyword"
+      },
+      "location_state": {
+        "type": "keyword"
+      },
+      "location_country": {
+        "type": "keyword"
+      },
+      "tags_flattened": {
+        "type": "nested",
+        "properties": {
+          "category": {"type": "keyword"},
+          "code": {"type": "keyword"},
+          "value": {"type": "keyword"},
+          "display_name": {"type": "text"}
+        }
+      },
+      "return_eligible": {
+        "type": "boolean"
+      },
+      "refund_eligible": {
+        "type": "boolean"
+      },
+      "offers": {
+        "type": "keyword"
+      },
+      "created_at": {
+        "type": "date"
+      },
+      "updated_at": {
+        "type": "date"
+      }
+    }
+  },
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0,
+    "refresh_interval": "1s",
+    "analysis": {
+      "analyzer": {
+        "catalog_analyzer": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": ["lowercase", "stop", "snowball"]
+        }
+      }
+    }
+  }
+}

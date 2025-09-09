@@ -1,19 +1,16 @@
 spring:
-  application:
-    name: kafka-schema-pipeline
-
-  # PostgreSQL Database Configuration
+  # Database Configuration for Docker
   datasource:
-    url: jdbc:postgresql://localhost:5432/catalog_db
+    url: jdbc:postgresql://postgres:5432/catalog_db
     username: catalog_user
     password: catalog_password
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
       minimum-idle: 2
-      connection-timeout: 30000
-      idle-timeout: 600000
-      max-lifetime: 1800000
+      connection-timeout: 20000
+      idle-timeout: 300000
+      max-lifetime: 1200000
 
   # JPA Configuration
   jpa:
@@ -26,17 +23,16 @@ spring:
         format_sql: true
         jdbc:
           time_zone: UTC
-    open-in-view: false
 
   # Flyway Configuration
   flyway:
     enabled: true
     locations: classpath:db/migration
     baseline-on-migrate: true
-    baseline-version: 0
 
+  # Kafka Configuration for Docker
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka:9092
     consumer:
       group-id: schema-pipeline-group
       auto-offset-reset: earliest
@@ -60,44 +56,45 @@ spring:
       type: SINGLE
       missing-topics-fatal: false
 
+# Application Configuration
+server:
+  port: 8080
+  shutdown: graceful
+
+# Topic Configuration
 topics:
   input: events.input
   output: events.output
   dlt: events.dlt
-  catalog:
-    stored: catalog.items.stored
 
-catalog:
-  processing:
-    batch-size: 100
-    timeout-ms: 5000
-
+# Kafka Producer Configuration
 kafka:
-  topics:
-    partitions: 3
-    replication-factor: 1
   producer:
-    sync-timeout-ms: 15000
+    sync-timeout-ms: 5000
 
+# Logging Configuration
+logging:
+  level:
+    com.example.kafka: INFO
+    org.springframework.kafka: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# Management and Monitoring
 management:
   endpoints:
     web:
       exposure:
-        include: health,metrics,info
+        include: health,info,metrics,prometheus
   endpoint:
     health:
       show-details: always
-      probes:
-        enabled: true
   health:
-    livenessState:
+    kafka:
       enabled: true
-    readinessState:
-      enabled: true
-
-logging:
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
-  level:
-    com.example.kafka: INFO
-    org.springframework.kafka: INFO
+  metrics:
+    export:
+      prometheus:
+        enabled: true

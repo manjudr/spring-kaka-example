@@ -16,6 +16,9 @@ repositories {
 }
 
 dependencies {
+    // BOM for version management
+    implementation platform('org.testcontainers:testcontainers-bom:1.19.3')
+    
     // Spring Boot Starters
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -26,8 +29,13 @@ dependencies {
     implementation 'org.springframework.kafka:spring-kafka:3.1.0'
     implementation 'org.apache.kafka:kafka-clients:3.6.0'
 
-    // JSON Schema Validation
-    implementation 'com.networknt:json-schema-validator:1.0.72'
+    // PostgreSQL and JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.postgresql:postgresql:42.7.1'
+    implementation 'org.flywaydb:flyway-core'
+
+    // JSON Processing
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.15.2'
 
     // Utils
     compileOnly 'org.projectlombok:lombok'
@@ -38,6 +46,10 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.kafka:spring-kafka-test'
     testImplementation 'org.awaitility:awaitility:4.2.0'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.testcontainers:postgresql'
+    testImplementation 'com.h2database:h2:2.2.220'
+    testImplementation 'org.testcontainers:kafka'
 }
 
 test {
